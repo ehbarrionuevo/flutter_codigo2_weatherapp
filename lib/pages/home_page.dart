@@ -120,6 +120,49 @@ class HomePage extends StatelessWidget {
                 ),
               ),
             ),
+            SizedBox(
+              height: 18.0,
+            ),
+            Row(
+              children: [
+                Container(
+                  padding: EdgeInsets.symmetric(vertical: 18.0, horizontal: 14.0),
+                  decoration: BoxDecoration(
+                    color: Colors.red,
+                    borderRadius: BorderRadius.circular(50.0),
+                  ),
+                  child: Column(
+                    children: [
+                      Text(
+                        "10 am",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16.0
+                        ),
+                      ),
+                      SizedBox(
+                        height: 6.0,
+                      ),
+                      Image.asset(
+                        'assets/images/dom.png',
+                        height: 38,
+                        color: Colors.white,
+                      ),
+                      SizedBox(
+                        height: 6.0,
+                      ),
+                      Text(
+                        "25 °c",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16.0
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ],
         ),
       ),
