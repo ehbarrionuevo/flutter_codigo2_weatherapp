@@ -57,14 +57,15 @@ class HomePage extends StatelessWidget {
             height: 12.0,
           ),
           TextFormField(
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.white,
               fontSize: 14.0,
             ),
             decoration: InputDecoration(
-              contentPadding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 14.0),
+              contentPadding:
+                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 14.0),
               hintText: "Ingresa una ciudad",
-              hintStyle: TextStyle(
+              hintStyle: const TextStyle(
                 color: Colors.white60,
                 fontSize: 14.0,
               ),
@@ -77,6 +78,29 @@ class HomePage extends StatelessWidget {
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(14.0),
                 borderSide: BorderSide.none,
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 12.0,
+          ),
+          SizedBox(
+            width: double.infinity,
+            height: 48.0,
+            child: ElevatedButton(
+              onPressed: () {},
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Color(0xffFE6C6D),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(14.0),
+                ),
+              ),
+              child: Text(
+                "Buscar",
+                style: TextStyle(
+                  fontSize: 15.0,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
             ),
           ),
