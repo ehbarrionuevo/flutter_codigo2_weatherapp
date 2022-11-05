@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: "WeatherApp",
       theme: ThemeData(
-        textTheme: GoogleFonts.sourceSansProTextTheme(),
+        textTheme: GoogleFonts.manropeTextTheme(),
       ),
       home: HomePage(),
     );
