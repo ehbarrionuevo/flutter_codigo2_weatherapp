@@ -126,18 +126,25 @@ class HomePage extends StatelessWidget {
             Row(
               children: [
                 Container(
-                  padding: EdgeInsets.symmetric(vertical: 18.0, horizontal: 14.0),
+                  padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 16.0),
                   decoration: BoxDecoration(
-                    color: Colors.red,
+                    color: Colors.white.withOpacity(0.12),
                     borderRadius: BorderRadius.circular(50.0),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.16),
+                        offset: const Offset(0, 5),
+                        blurRadius: 12.0
+                      ),
+                    ],
                   ),
                   child: Column(
                     children: [
                       Text(
                         "10 am",
                         style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16.0
+                          color: Colors.white60,
+                          fontSize: 14.0
                         ),
                       ),
                       SizedBox(
