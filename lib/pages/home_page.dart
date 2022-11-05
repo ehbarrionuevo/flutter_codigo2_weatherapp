@@ -1,3 +1,4 @@
+import 'package:codigo2_weatherapp/ui/widgets/item_forecast_widget.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -121,54 +122,21 @@ class HomePage extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: 18.0,
+              height: 30.0,
             ),
-            Row(
-              children: [
-                Container(
-                  padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 16.0),
-                  decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.12),
-                    borderRadius: BorderRadius.circular(50.0),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.16),
-                        offset: const Offset(0, 5),
-                        blurRadius: 12.0
-                      ),
-                    ],
-                  ),
-                  child: Column(
-                    children: [
-                      Text(
-                        "10 am",
-                        style: TextStyle(
-                          color: Colors.white60,
-                          fontSize: 14.0
-                        ),
-                      ),
-                      SizedBox(
-                        height: 6.0,
-                      ),
-                      Image.asset(
-                        'assets/images/dom.png',
-                        height: 38,
-                        color: Colors.white,
-                      ),
-                      SizedBox(
-                        height: 6.0,
-                      ),
-                      Text(
-                        "25 °c",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16.0
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
+            SingleChildScrollView(
+              physics: const BouncingScrollPhysics(),
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  ItemForecastWidget(),
+                  ItemForecastWidget(),
+                  ItemForecastWidget(),
+                  ItemForecastWidget(),
+                  ItemForecastWidget(),
+                  ItemForecastWidget(),
+                ],
+              ),
             ),
           ],
         ),
