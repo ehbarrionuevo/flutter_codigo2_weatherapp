@@ -13,14 +13,16 @@ class _HomePageState extends State<HomePage> {
   String country = "";
   double temp = 0;
 
+  final TextEditingController _searchController = TextEditingController();
+
   @override
   initState(){
     super.initState();
-    getData();
+    getData("Arequipa");
   }
 
-  getData() async{
-    Uri _url = Uri.parse("https://api.openweathermap.org/data/2.5/weather?q=Arequipa&appid=43a986e26b08f6bd8d7effeaa7f4dc00");
+  getData(String cityName) async{
+    Uri _url = Uri.parse("https://api.openweathermap.org/data/2.5/weather?q=$cityName&appid=43a986e26b08f6bd8d7effeaa7f4dc00");
     http.Response response = await http.get(_url);
     Map myMap = json.decode(response.body);
     temp = myMap["main"]["temp"];
@@ -112,6 +114,7 @@ class _HomePageState extends State<HomePage> {
                 height: 18.0,
               ),
               TextFormField(
+                controller: _searchController,
                 style: const TextStyle(
                   color: Colors.white,
                   fontSize: 14.0,
@@ -143,7 +146,10 @@ class _HomePageState extends State<HomePage> {
                 width: double.infinity,
                 height: 48.0,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    String city = _searchController.text;
+                    getData(city);
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xffFE6C6D),
                     shape: RoundedRectangleBorder(
