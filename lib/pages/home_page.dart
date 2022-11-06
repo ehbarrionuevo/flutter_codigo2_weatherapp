@@ -1,11 +1,34 @@
+import 'dart:convert';
 import 'package:codigo2_weatherapp/ui/widgets/item_forecast_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+
+
+  getData() async{
+    Uri _url = Uri.parse("https://api.openweathermap.org/data/2.5/weather?q=Arequipa&appid=43a986e26b08f6bd8d7effeaa7f4dc00");
+    http.Response response = await http.get(_url);
+    print(response.statusCode);
+    print(response.body);
+    print("[2, 23, 12]");
+
+    Map myMap = json.decode(response.body);
+
+    //Nombre de la ciudad
+    print(myMap["name"]);
+    //Codigo pais
+
+    //Temp
+
+  }
+
 
   @override
   Widget build(BuildContext context) {
+
+    getData();
+
     return Scaffold(
       backgroundColor: Color(0xff232535),
       appBar: AppBar(
@@ -37,7 +60,7 @@ class HomePage extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
+                children: const [
                   Text(
                     "26",
                     style: TextStyle(
@@ -57,12 +80,12 @@ class HomePage extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 2.0,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [
+                children: const [
                   Text(
                     "Arequipa, Perú",
                     style: TextStyle(
@@ -71,7 +94,7 @@ class HomePage extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 18.0,
               ),
               TextFormField(
@@ -99,7 +122,7 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 18.0,
               ),
               SizedBox(
@@ -108,12 +131,12 @@ class HomePage extends StatelessWidget {
                 child: ElevatedButton(
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color(0xffFE6C6D),
+                    backgroundColor: const Color(0xffFE6C6D),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(14.0),
                     ),
                   ),
-                  child: Text(
+                  child: const Text(
                     "Buscar",
                     style: TextStyle(
                       fontSize: 15.0,
@@ -122,14 +145,14 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 30.0,
               ),
               SingleChildScrollView(
                 physics: const BouncingScrollPhysics(),
                 scrollDirection: Axis.horizontal,
                 child: Row(
-                  children: [
+                  children: const [
                     ItemForecastWidget(),
                     ItemForecastWidget(),
                     ItemForecastWidget(),
@@ -139,8 +162,8 @@ class HomePage extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(
-                height: 30.0,
+              const SizedBox(
+                height: 40.0,
               ),
               Container(
                 padding: EdgeInsets.symmetric(vertical: 32.0, horizontal: 14.0),
