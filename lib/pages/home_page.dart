@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:codigo2_weatherapp/ui/widgets/item_forecast_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
 
 class HomePage extends StatefulWidget {
@@ -48,6 +49,29 @@ class _HomePageState extends State<HomePage> {
     // print(myMap["weather"][0]["description"]);
   }
 
+  getDataLocation() async{
+    isLoading = true;
+    setState(() {
+
+    });
+    Position position = await Geolocator.getCurrentPosition();
+    print(position.latitude);
+    print(position.longitude);
+    Uri _url = Uri.parse("https://api.openweathermap.org/data/2.5/weather?lat=${position.latitude}&lon=${position.longitude}&appid=43a986e26b08f6bd8d7effeaa7f4dc00");
+    http.Response response = await http.get(_url);
+    if(response.statusCode == 200){
+      Map myMap = json.decode(response.body);
+      temp = myMap["main"]["temp"];
+      temp = temp - 273.15;
+      cityName = myMap["name"];
+      country = myMap["sys"]["country"];
+      isLoading = false;
+      setState(() {});
+    }
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,7 +85,9 @@ class _HomePageState extends State<HomePage> {
         ),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              getDataLocation();
+            },
             icon: Icon(
               Icons.location_on,
             ),
