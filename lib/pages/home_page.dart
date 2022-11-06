@@ -20,7 +20,7 @@ class _HomePageState extends State<HomePage> {
   @override
   initState() {
     super.initState();
-    getData("Arequipa");
+    getDataLocation();
   }
 
   getData(String city) async {
