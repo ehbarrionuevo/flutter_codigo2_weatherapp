@@ -24,6 +24,7 @@ class _HomePageState extends State<HomePage> {
     http.Response response = await http.get(_url);
     Map myMap = json.decode(response.body);
     temp = myMap["main"]["temp"];
+    temp = temp - 273.15;
     cityName = myMap["name"];
     country = myMap["sys"]["country"];
     setState(() {
@@ -41,8 +42,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-
-
 
     return Scaffold(
       backgroundColor: Color(0xff232535),
@@ -77,7 +76,7 @@ class _HomePageState extends State<HomePage> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    temp.toString(),
+                    temp.toStringAsFixed(1),
                     style: const TextStyle(
                       fontSize: 80.0,
                       color: Colors.white,
