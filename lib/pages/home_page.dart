@@ -236,9 +236,9 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ),
-          Container(
-            color: Color(0xff232535).withOpacity(0.95),
-            child: Center(
+          isLoading ? Container(
+            color: const Color(0xff232535).withOpacity(0.98),
+            child: const Center(
               child: SizedBox(
                 height: 20,
                 width: 20,
@@ -248,7 +248,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
-          ),
+          ) : const SizedBox(),
         ],
       ),
     );
