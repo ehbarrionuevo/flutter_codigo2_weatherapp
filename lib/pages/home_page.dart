@@ -3,31 +3,46 @@ import 'package:codigo2_weatherapp/ui/widgets/item_forecast_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
 
+class _HomePageState extends State<HomePage> {
+  String cityName = "";
+  String country = "";
+  double temp = 0;
+
+  @override
+  initState(){
+    super.initState();
+    getData();
+  }
 
   getData() async{
     Uri _url = Uri.parse("https://api.openweathermap.org/data/2.5/weather?q=Arequipa&appid=43a986e26b08f6bd8d7effeaa7f4dc00");
     http.Response response = await http.get(_url);
-    print(response.statusCode);
-    print(response.body);
-    print("[2, 23, 12]");
-
     Map myMap = json.decode(response.body);
+    temp = myMap["main"]["temp"];
+    cityName = myMap["name"];
+    country = myMap["sys"]["country"];
+    setState(() {
 
-    //Nombre de la ciudad
-    print(myMap["name"]);
-    //Codigo pais
-
-    //Temp
+    });
+    // //Nombre de la ciudad
+    // print(myMap["name"]);
+    // //Codigo pais
+    // print(myMap["sys"]["country"]);
+    // //Temp
+    // print(myMap["main"]["temp"]);
+    // print(myMap["weather"][0]["description"]);
 
   }
-
 
   @override
   Widget build(BuildContext context) {
 
-    getData();
+
 
     return Scaffold(
       backgroundColor: Color(0xff232535),
@@ -60,18 +75,18 @@ class HomePage extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
-                children: const [
+                children: [
                   Text(
-                    "26",
-                    style: TextStyle(
+                    temp.toString(),
+                    style: const TextStyle(
                       fontSize: 80.0,
                       color: Colors.white,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 4.0,
                   ),
-                  Text(
+                  const Text(
                     "°C",
                     style: TextStyle(
                       fontSize: 18.0,
@@ -85,10 +100,10 @@ class HomePage extends StatelessWidget {
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
+                children: [
                   Text(
-                    "Arequipa, Perú",
-                    style: TextStyle(
+                    "$cityName, $country",
+                    style: const TextStyle(
                       color: Colors.white,
                     ),
                   ),
